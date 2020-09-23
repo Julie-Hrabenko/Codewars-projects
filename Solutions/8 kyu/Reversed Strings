@@ -1,0 +1,5 @@
+def solution(input_string):
+    res = ''
+    for c in input_string:
+        res = c + res
+    return res
