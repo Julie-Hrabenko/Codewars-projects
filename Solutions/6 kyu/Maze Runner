@@ -1,0 +1,56 @@
+FINAL_NUM = 3
+START_NUM = 2
+WALL_NUM = 1
+PATH_NUM = 0
+
+def get_coord(matrix, search):
+    """ Searches coordinates of given number in the matrix. """
+    return [(i, j) for i, row in enumerate(matrix) for j, x in enumerate(row) if x == search]
+
+
+def get_move_offset(direction):
+        if direction=="N":
+            return -1, 0
+        elif direction=="S":
+            return 1, 0
+        elif direction=="W":
+            return 0, -1
+        elif direction=="E":
+            return 0, 1
+        else:
+            raise ValueError
+
+def maze_runner(maze, directions):
+
+    size = len(maze)
+    print(f'size: {size}')
+
+    # final_coord = get_coord(maze, search=FINAL_NUM)
+    start_coord = get_coord(maze, search=START_NUM)
+    x,y = start_coord[0]
+
+    result_string = 'Lost'
+
+    for d in directions:
+
+        # Getting offset for direction 'd'
+        offset_x, offset_y = get_move_offset(d)
+
+        x+= offset_x
+        y+= offset_y
+
+        if x >= size or y >= size or x<0 or y<0:
+            result_string = 'Dead'
+            break
+
+
+        elif maze[x][y] == FINAL_NUM:
+            result_string = 'Finish'
+            break
+
+        elif maze[x][y] == WALL_NUM:
+            result_string = 'Dead'
+            break
+
+
+    return result_string
