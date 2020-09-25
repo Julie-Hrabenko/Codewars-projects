@@ -1,0 +1,11 @@
+import string
+
+
+def is_pangram(s):
+    l_letters = set(string.ascii_lowercase)
+    res = set()
+    for l in s.lower():
+        if l in l_letters:
+            res.add(l)
+
+    return res == l_letters
