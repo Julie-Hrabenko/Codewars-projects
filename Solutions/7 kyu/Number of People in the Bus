@@ -1,0 +1,5 @@
+def number(bus_stops):
+    vol = 0
+    for stop_i in bus_stops:
+        vol = vol + stop_i[0] - stop_i[1]
+    return vol
