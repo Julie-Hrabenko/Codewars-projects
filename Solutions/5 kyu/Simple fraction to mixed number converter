@@ -1,0 +1,68 @@
+def gr_com_div(b, d):
+    if d == 0:
+        return b
+    return gr_com_div(d, b % d)
+
+
+def mixed_fraction(fraction):
+    x = fraction.rpartition("/")
+    numerator = int(x[0])
+    denominator = int(x[2])
+
+    if denominator == 0:
+        raise Exception("Must raise ZeroDivisionError")
+
+    elif numerator > 0 and denominator > 0:
+        quotient = numerator // denominator
+
+        new_numenator = numerator - quotient * denominator
+        if new_numenator == 0:
+            return str(quotient)
+        elif quotient == 0:
+            return str(new_numenator // gr_com_div(denominator, new_numenator)) + '/' + str(denominator // gr_com_div(denominator, new_numenator))
+        else:
+            return str(quotient) + ' ' + str(new_numenator // gr_com_div(denominator, new_numenator)) + '/' + str(denominator // gr_com_div(denominator, new_numenator))
+
+    elif numerator < 0 and denominator > 0:
+        numerator = numerator * (-1)
+        quotient = numerator // denominator
+
+        new_numenator = numerator - quotient * denominator
+        if new_numenator == 0:
+            return str(quotient * (-1))
+        elif quotient == 0:
+            return '-' + str(new_numenator // gr_com_div(denominator, new_numenator)) + '/' + str(denominator // gr_com_div(denominator, new_numenator))
+        else:
+            return str(quotient * (-1)) + ' ' + str(new_numenator // gr_com_div(denominator, new_numenator)) + '/' + str(
+                denominator // gr_com_div(denominator, new_numenator))
+
+    elif numerator < 0 and denominator < 0:
+        denominator = denominator * (-1)
+        numerator = numerator * (-1)
+        quotient = numerator // denominator
+
+        new_numenator = numerator - quotient * denominator
+        if new_numenator == 0:
+            return str(quotient)
+        elif quotient == 0:
+            return str(new_numenator // gr_com_div(denominator, new_numenator)) + '/' + str(denominator // gr_com_div(denominator, new_numenator))
+        else:
+            return str(quotient) + ' ' + str(new_numenator // gr_com_div(denominator, new_numenator)) + '/' + str(
+                denominator // gr_com_div(denominator, new_numenator))
+
+    elif numerator > 0 and denominator < 0:
+
+        denominator = denominator * (-1)
+        quotient = numerator // denominator
+
+        new_numenator = numerator - quotient * denominator
+        if new_numenator == 0:
+            return str(quotient * (-1))
+        elif quotient == 0:
+            return '-' + str(new_numenator // gr_com_div(denominator, new_numenator)) + '/' + str(denominator // gr_com_div(denominator, new_numenator))
+        else:
+            return str(quotient * (-1)) + ' ' + str(new_numenator // gr_com_div(denominator, new_numenator)) + '/' + str(
+                denominator // gr_com_div(denominator, new_numenator))
+
+    elif numerator == 0:
+        return str(0)
