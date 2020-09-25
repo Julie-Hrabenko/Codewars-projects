@@ -1,0 +1,7 @@
+def solution(s):
+  def process_string(s):
+      return s if s.islower() else ' ' + s
+
+
+  res = ''.join(process_string(el) for el in s)
+  return res
