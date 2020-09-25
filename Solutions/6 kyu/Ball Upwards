@@ -1,0 +1,18 @@
+def max_ball(v0):
+    vms = v0 * 1000 / 3600
+    g = 9.81
+
+    max_t, max_h = 0,-1
+    t = 0
+    
+    while True:
+        h = vms * (t / 10) - 0.5 * g * (t / 10) * (t / 10)
+
+        if h > max_h:
+            max_t, max_h = t, h
+        else:
+            break
+
+        t += 1
+
+    return max_t
