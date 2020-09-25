@@ -1,0 +1,68 @@
+import string
+import math
+
+alphabet = string.ascii_lowercase
+ABC_alphabet = string.ascii_uppercase
+
+
+def position_code(strng, shift):
+    if strng[0].lower() in alphabet:
+        position = alphabet.find(strng[0].lower())
+        new_position = (position + shift) % 26
+        new_character = alphabet[new_position]
+        encrypted_res = strng[0].lower() + new_character
+        return encrypted_res
+
+
+def encode_str(strng, shift):
+    res = position_code(strng, shift)
+    for el in strng:
+        if el in alphabet:
+            position = alphabet.find(el)
+            new_position = (position + shift) % 26
+            new_character = alphabet[new_position]
+            res += new_character
+
+        elif el in ABC_alphabet:
+            position = ABC_alphabet.find(el)
+            new_position = (position + shift) % 26
+            new_character = alphabet[new_position]
+            res += new_character.upper()
+
+        else:
+            res += el
+
+    # Split the result
+    length = len(res)
+    n = 5
+    chars = math.ceil(length / n)
+
+    equal_parts = []
+    for i in range(0, length, chars):
+        part = res[i:i + chars]
+        equal_parts.append(part)
+    return equal_parts
+
+
+def decode(arr):
+    joined_arr = ''.join(arr)
+    # to determine the shift
+    shift = alphabet.find(joined_arr[1]) - alphabet.find(joined_arr[0])
+    #remove the position code
+    n_arr = ''.join([joined_arr[i] for i in range(len(joined_arr)) if i != 0 and i != 1])
+    decrypted_message = ''
+    for el in n_arr:
+        if el in alphabet:
+            position = alphabet.find(el)
+            new_position = (position - shift) % 26
+            new_character = alphabet[new_position]
+            decrypted_message += new_character
+        elif el in ABC_alphabet:
+            position = ABC_alphabet.find(el)
+            new_position = (position - shift) % 26
+            new_character = alphabet[new_position]
+            decrypted_message += new_character.upper()
+        else:
+            decrypted_message += el
+
+    return decrypted_message
