@@ -1,0 +1,7 @@
+def accum(s):
+    parts = []
+    for i, el in enumerate(s):
+        s = el * (i + 1)
+        parts.append(s.capitalize())
+    res = '-'.join(parts)
+    return res
