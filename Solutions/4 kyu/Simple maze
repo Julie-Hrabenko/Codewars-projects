@@ -1,0 +1,68 @@
+def find_start(matrix):
+    for i, row in enumerate(matrix):
+        for j, x in enumerate(row):
+            if x == 'k':
+                return i, j
+
+
+def is_safe(maze):
+    str = ''
+    for i, row in enumerate(maze):
+        for j, x in enumerate(row):
+            if x == 'k':
+                str += x
+    if str.count('k') > 1:
+        raise Exception("There should be no multiple Kates")
+
+def find_end_point(maze):
+    h = len(maze)
+    w = len(maze[0])
+    as_list = [list(b) for b in maze]
+    res = []
+    for x in range(h):
+        for y in range(w):
+            if x == 0 and maze[0][y] == ' ':
+                res.append((0, y))
+            elif x == h-1 and maze[h-1][y] == ' ':
+                res.append((h-1, y))
+            elif y == 0 and maze[x][0] == ' ':
+                res.append((x, 0))
+            elif y == w-1 and maze[x][w - 1] == ' ':
+                res.append((x, w - 1))
+    return list(set(res))
+
+
+def search(maze, x, y):
+    for el in find_end_point(maze):
+        if (x, y) == el:
+            return True
+
+    if maze[x][y] == "#":
+        return False
+
+    elif is_safe(maze):
+        return False
+
+    elif maze[x][y] == 2:
+        return False
+
+    elif maze[0][y] == 'k' or maze[len(maze) - 1][y] == 'k' or maze[x][0] == 'k' or maze[x][len(maze[0]) - 1] == 'k':
+        return True
+
+    maze[x][y] = 2
+
+    if ((x < len(maze) - 1 and search(maze, x + 1, y))
+            or (y >= 0 and search(maze, x, y - 1))
+            or (x >= 0 and search(maze, x - 1, y))
+            or (y < len(maze[0]) - 1 and search(maze, x, y + 1))):
+        return True
+    return False
+
+
+def has_exit(maze):
+    as_list = [list(b) for b in maze]
+    start_coord = find_start(maze)
+    x = start_coord[0]
+    y = start_coord[1]
+
+    return search(as_list, x, y)
