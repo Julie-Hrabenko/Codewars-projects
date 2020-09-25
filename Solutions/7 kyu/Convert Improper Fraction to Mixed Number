@@ -1,0 +1,7 @@
+def get_mixed_num(fraction):
+    x = fraction.rpartition("/")
+    a = int(x[0])
+    b = int(x[2])
+    c = a // b
+    d = a - c * b
+    return str(c) + ' ' + str(d)+'/'+str(b)
