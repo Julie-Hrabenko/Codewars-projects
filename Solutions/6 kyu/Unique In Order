@@ -1,0 +1,10 @@
+def unique_in_order(iterable):
+    uniquelst = [ ]
+    pre_item = None
+    if iterable == '':
+        return []
+    for el in iterable:
+        if el != pre_item:
+            uniquelst.append(el)
+            pre_item = el
+    return uniquelst
