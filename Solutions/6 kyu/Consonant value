@@ -1,0 +1,29 @@
+import string
+import re
+
+
+def split_exl_vowels(s):
+    return re.split("[aeiou]+", s)
+
+
+def get_letter_weight(letter):
+    if len(letter) > 1:
+        raise TypeError
+
+    c = letter.lower()
+    return string.ascii_lowercase.index(c)+1
+
+
+def solve(s):
+    max_weight = -1
+
+    for ss in split_exl_vowels(s):
+        weight = 0
+        for c in ss:
+            weight += get_letter_weight(c)
+
+
+        if weight > max_weight:
+            max_weight = weight
+
+    return max_weight
