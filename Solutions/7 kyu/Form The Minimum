@@ -1,0 +1,7 @@
+def min_value(digits):
+    mylist2 = list(dict.fromkeys(digits))
+    mylist2.sort(reverse=True)
+    num = 0
+    for pos, digit in enumerate(mylist2):
+        num += digit * 10**pos
+    return num
