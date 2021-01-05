@@ -28,6 +28,8 @@ https://www.codewars.com/kata/56bb9b7838dd34d7d8001b3c
 https://www.codewars.com/kata/55084d3898b323f0aa000546
 https://www.codewars.com/kata/54d512e62a5e54c96200019e
 https://www.codewars.com/kata/556b85b433fb5e899200003f
+https://www.codewars.com/kata/54746b7ab2bc2868a0000acf
+https://www.codewars.com/kata/514a024011ea4fb54200004b
 
 6kyu
 https://www.codewars.com/kata/54e6533c92449cc251001667
