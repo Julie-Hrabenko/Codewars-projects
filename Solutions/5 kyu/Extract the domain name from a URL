@@ -1,0 +1,9 @@
+def domain_name(url):
+    if url[0] == 'w' and url[3] == '.':
+        return url.split(".")[1].split(".")[0]
+    elif url[0] == 'h' and url[8] == 'w':
+        return url.split("/")[2].split(".")[1]
+    elif url[0] == 'h' and url[8] != 'w':
+        return url.split("/")[2].split(".")[0]
+    else:
+        return url.split(".")[0]
