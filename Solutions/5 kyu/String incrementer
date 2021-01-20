@@ -1,0 +1,23 @@
+def increment_string(strng):
+    number_in_strng = ''
+    new_str = ''
+    dig_count = 0
+    rev_str = strng[::-1]
+
+    if len(strng) == 0:
+        return '1'
+
+    elif strng.isalpha():
+        number_in_strng = '0'
+        new_str = rev_str
+
+    else:
+        for i in range(len(strng[::-1])):
+            if rev_str[i].isdigit():
+                number_in_strng += rev_str[i]
+                dig_count += 1
+            elif not rev_str[i].isdigit():
+                new_str += str(rev_str[i:])
+                break
+
+    return new_str[::-1] + str(int(number_in_strng[::-1]) + 1).zfill(dig_count)
