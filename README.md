@@ -30,6 +30,7 @@ https://www.codewars.com/kata/54d512e62a5e54c96200019e
 https://www.codewars.com/kata/556b85b433fb5e899200003f
 https://www.codewars.com/kata/54746b7ab2bc2868a0000acf
 https://www.codewars.com/kata/514a024011ea4fb54200004b
+https://www.codewars.com/kata/54a91a4883a7de5d7800009c
 
 6kyu
 https://www.codewars.com/kata/54e6533c92449cc251001667
