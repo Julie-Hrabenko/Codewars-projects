@@ -1,0 +1,61 @@
+import math
+
+
+def nico(key, message):
+    key_list = []
+    for l in key:
+        key_list.append(l)
+
+    # Create a dictionary, its values are in the key_list
+    list_of_keys = []
+    list_of_letters = []
+    for i, v in enumerate(key_list):
+        list_of_keys.append(i + 1)
+        list_of_letters.append(v)
+    lst_tuples = list(zip(list_of_keys, list_of_letters))
+    word_dict = dict(lst_tuples)
+
+    #Sorting by keys in word_dict
+    key_list.sort()
+    list_of_keys_2 = []
+    list_of_letters_2 = []
+    for i, v in enumerate(key_list):
+        list_of_keys_2.append(i + 1)
+        list_of_letters_2.append(v)
+    lst_tuples_2 = list(zip(list_of_keys_2, list_of_letters_2))
+    word_dict_2 = dict(lst_tuples_2)
+
+    #Join 2 dictionaries.
+    # if the values coincide, take the keys from the second dictionary
+    sorted_keys = []
+    for k, v in word_dict.items():
+        for k2, v2, in word_dict_2.items():
+            if v == v2:
+                sorted_keys.append(k2)
+
+    # split the message to be encoded by the quantity of keys
+    split_message = []
+    n = len(key)
+    ratio = math.ceil(len(message)/n)
+    for j in range(0, n):
+        part = message[j::n]
+        if len(part) < ratio:
+            part += ' '
+            split_message.append(part)
+        else:
+            split_message.append(part)
+
+    #Join sorted keys with the divided message into dictionary
+    final_dict = dict(list(zip(sorted_keys, split_message)))
+    sorted_values_final_dict = []
+    for key in sorted(final_dict):
+        sorted_values_final_dict.append(final_dict[key])
+    
+    # received values are arranged in the encided message
+    encoded_message = ''
+    for d in range(1, ratio+1):
+        for i, v in enumerate(sorted_values_final_dict):
+            encoded_message += v[d-1]
+
+    return encoded_message
+
