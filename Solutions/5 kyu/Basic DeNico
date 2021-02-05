@@ -1,0 +1,58 @@
+import math
+
+
+def de_nico(key, msg):
+    key_list = []
+    for l in key:
+        key_list.append(l)
+
+    list_of_keys = []
+    list_of_letters = []
+    for i, v in enumerate(key_list):
+        list_of_keys.append(i + 1)
+        list_of_letters.append(v)
+    word_dict = dict(list(zip(list_of_keys, list_of_letters)))
+
+    key_list.sort()
+    list_of_keys_2 = []
+    list_of_letters_2 = []
+    for i, v in enumerate(key_list):
+        list_of_keys_2.append(i + 1)
+        list_of_letters_2.append(v)
+    word_dict_2 = dict(list(zip(list_of_keys_2, list_of_letters_2)))
+
+    sorted_keys = []
+    for k, v in word_dict.items():
+        for k2, v2, in word_dict_2.items():
+            if v == v2:
+                sorted_keys.append(k2)
+
+    split_message = []
+    n = len(key)
+    ratio = math.ceil(len(msg) / n)
+    for j in range(0, n):
+        part = msg[j::n]
+        if len(part) < ratio:
+            part += '*'
+            split_message.append(part)
+        else:
+            split_message.append(part)
+
+
+    f_d = dict(list(zip(list_of_keys, split_message)))
+    f_d_2 = dict(list(zip(sorted_keys, split_message)))
+    
+    sorted_values_2 = []
+    for k, v in f_d.items():
+        for k2, v2, in f_d_2.items():
+            if v == v2:
+                sorted_values_2.append(f_d.get(k2))
+
+    decoded_message = ''
+    for d in range(1, ratio + 1):
+        for i, v in enumerate(sorted_values_2):
+            decoded_message += v[d - 1]
+    d = decoded_message.replace('*', '')
+
+
+    return d.rstrip()
