@@ -1,0 +1,21 @@
+class SecureList:
+    def __init__(self, base):
+        self.base = [i for i in base]
+
+    def __getitem__(self, key):
+        msg = self.base[key]
+        self.base.pop(key)
+        return msg
+
+    def __str__(self):
+        base = self.base
+        self.base = []
+        return str(base)
+
+    def __repr__(self):
+        base = self.base
+        self.base = []
+        return str(base)
+
+    def __len__(self):
+        return len(self.base)
