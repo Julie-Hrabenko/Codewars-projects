@@ -1,0 +1,26 @@
+import itertools
+
+def choose_best_sum(t, k, ls):
+    if len(ls) < k:
+        return None
+    else:
+        variants = list(itertools.combinations(ls, k))
+        list_sum = []
+        for v in variants:
+            list_sum.append(sum(v))
+            
+        out = []
+        res = []
+        for ind, el in enumerate(list_sum):
+            if el > t:
+                out.append(el)
+            else:
+                res.append(el)
+        if len(res) == 0:
+            return None
+
+        elif max(res) <= t:
+            return max(res)
+
+        else:
+            return None
