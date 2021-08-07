@@ -25,6 +25,7 @@ Links to katas in this repository:
 https://www.codewars.com/kata/56bb9b7838dd34d7d8001b3c
 
 5kyu
+https://www.codewars.com/kata/52ebe4608567ade7d700044a
 https://www.codewars.com/kata/55e7280b40e1c4a06d0000aa
 https://www.codewars.com/kata/52597aa56021e91c93000cb0
 https://www.codewars.com/kata/525f3eda17c7cd9f9e000b39
