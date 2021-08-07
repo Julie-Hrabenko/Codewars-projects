@@ -1,1 +1,21 @@
+meaning = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K']
+suits = ['c', 'd', 'h', 's']
 
+
+def encode(cards):
+    res = []
+    for x in cards:
+        s = suits.index(x[1])
+        m = meaning.index(x[0])
+        y = m + (s * 13)
+        res.append(y)
+    return sorted(res)
+
+def decode(cards):
+    res = []
+    for integer in sorted(cards):
+        pos = integer % 13
+        s = integer // 13
+        output = meaning[pos]+suits[s]
+        res.append(output)
+    return res
